@@ -26,13 +26,12 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   void fetchRate() async {
-    double rate = await _getRate.getCurrentRate(
-      crypto: 'BTC',
-      currency: _selectedCurrency,
-    );
+    _getRate.getCryptRate(currency: _selectedCurrency);
 
     setState(() {
-      _bTCRate = rate;
+      _bTCRate = _getRate.bTCRate;
+      _eTHRate = _getRate.eTHRate;
+      _lTCRate = _getRate.lTCRate;
       _fetched = true;
     });
   }
@@ -99,7 +98,17 @@ class _PriceScreenState extends State<PriceScreen> {
           CryptoCard(
               cryptoType: 'BTC',
               fetched: _fetched,
-              uSDRate: _bTCRate,
+              currentRate: _bTCRate,
+              selectedCurrency: _selectedCurrency),
+          CryptoCard(
+              cryptoType: 'ETH',
+              fetched: _fetched,
+              currentRate: _eTHRate,
+              selectedCurrency: _selectedCurrency),
+          CryptoCard(
+              cryptoType: 'LTC',
+              fetched: _fetched,
+              currentRate: _lTCRate,
               selectedCurrency: _selectedCurrency),
           Container(
             height: 150.0,
@@ -118,13 +127,13 @@ class CryptoCard extends StatelessWidget {
   const CryptoCard({
     @required this.cryptoType,
     @required this.fetched,
-    @required this.uSDRate,
+    @required this.currentRate,
     @required this.selectedCurrency,
   });
 
   final String cryptoType;
   final bool fetched;
-  final double uSDRate;
+  final double currentRate;
   final String selectedCurrency;
 
   @override
@@ -140,7 +149,7 @@ class CryptoCard extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
           child: Text(
-            '1 $cryptoType = ${fetched ? uSDRate.toInt() : '?'} $selectedCurrency',
+            '1 $cryptoType = ${fetched ? currentRate.toInt() : '?'} $selectedCurrency',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20.0,
