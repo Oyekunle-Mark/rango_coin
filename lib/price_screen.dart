@@ -4,13 +4,15 @@ import 'dart:io' show Platform;
 import 'package:bitcoin_ticker/coin_data.dart';
 import 'package:bitcoin_ticker/service/get_rate.dart';
 
+import 'coin_data.dart';
+
 class PriceScreen extends StatefulWidget {
   @override
   _PriceScreenState createState() => _PriceScreenState();
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-  String _selectedCurrency = 'USD';
+  String _selectedCurrency = 'AUD';
   GetRate _getRate = GetRate();
   double _uSDRate;
   bool _fetched = false;
@@ -18,13 +20,13 @@ class _PriceScreenState extends State<PriceScreen> {
   @override
   void initState() {
     super.initState();
-    fetchRate(currency: _selectedCurrency);
+    fetchRate();
   }
 
-  void fetchRate({@required String currency}) async {
+  void fetchRate() async {
     double rate = await _getRate.getCurrentRate(
       crypto: 'BTC',
-      currency: currency,
+      currency: _selectedCurrency,
     );
 
     setState(() {
@@ -51,6 +53,7 @@ class _PriceScreenState extends State<PriceScreen> {
       onChanged: (value) {
         setState(() {
           _selectedCurrency = value;
+          fetchRate();
         });
       },
     );
@@ -72,7 +75,10 @@ class _PriceScreenState extends State<PriceScreen> {
       backgroundColor: Colors.lightBlue,
       itemExtent: 32.0,
       onSelectedItemChanged: (selectedIndex) {
-        print(selectedIndex);
+        setState(() {
+          _selectedCurrency = currenciesList[selectedIndex];
+          fetchRate();
+        });
       },
       children: dropDowns,
     );
@@ -99,7 +105,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = ${_fetched ? _uSDRate.toInt() : '?'} USD',
+                  '1 BTC = ${_fetched ? _uSDRate.toInt() : '?'} $_selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
