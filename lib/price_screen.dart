@@ -12,6 +12,8 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
   String _selectedCurrency = 'USD';
   GetRate _getRate = GetRate();
+  double _uSDRate;
+  bool _fetched = false;
 
   @override
   void initState() {
@@ -25,7 +27,10 @@ class _PriceScreenState extends State<PriceScreen> {
       currency: 'USD',
     );
 
-    print(rate);
+    setState(() {
+      _uSDRate = rate;
+      _fetched = true;
+    });
   }
 
   DropdownButton<String> androidDropDown() {
@@ -94,7 +99,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = ? USD',
+                  '1 BTC = ${_fetched ? _uSDRate.toInt() : '?'} USD',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
