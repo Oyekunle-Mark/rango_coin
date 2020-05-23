@@ -10,16 +10,16 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
   String _selectedCurrency = 'USD';
 
-  List<DropdownMenuItem<String>> getDropDownItems() {
-    List<DropdownMenuItem<String>> dropDowns = [];
+  List<Text> getPickerItemList() {
+    List<Text> dropDowns = [];
 
     for (var currency in currenciesList) {
-      dropDowns.add(
-        DropdownMenuItem(
-          child: Text(currency),
-          value: currency,
+      dropDowns.add(Text(
+        currency,
+        style: TextStyle(
+          color: Colors.white,
         ),
-      );
+      ));
     }
 
     return dropDowns;
@@ -67,11 +67,7 @@ class _PriceScreenState extends State<PriceScreen> {
               onSelectedItemChanged: (selectedIndex) {
                 print(selectedIndex);
               },
-              children: <Widget>[
-                Text('USD'),
-                Text('EUR'),
-                Text('GBP'),
-              ],
+              children: getPickerItemList(),
             ),
           ),
         ],
