@@ -14,7 +14,9 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
   String _selectedCurrency = 'AUD';
   GetRate _getRate = GetRate();
-  double _uSDRate;
+  double _bTCRate;
+  double _eTHRate;
+  double _lTCRate;
   bool _fetched = false;
 
   @override
@@ -30,7 +32,7 @@ class _PriceScreenState extends State<PriceScreen> {
     );
 
     setState(() {
-      _uSDRate = rate;
+      _bTCRate = rate;
       _fetched = true;
     });
   }
@@ -97,7 +99,7 @@ class _PriceScreenState extends State<PriceScreen> {
           CryptoCard(
               cryptoType: 'BTC',
               fetched: _fetched,
-              uSDRate: _uSDRate,
+              uSDRate: _bTCRate,
               selectedCurrency: _selectedCurrency),
           Container(
             height: 150.0,
