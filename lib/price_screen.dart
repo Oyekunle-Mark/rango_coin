@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:bitcoin_ticker/coin_data.dart';
 import 'dart:io' show Platform;
+import 'package:bitcoin_ticker/coin_data.dart';
+import 'package:bitcoin_ticker/service/get_rate.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -10,6 +11,22 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String _selectedCurrency = 'USD';
+  GetRate _getRate = GetRate();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchRage();
+  }
+
+  void fetchRage() async {
+    double rate = await _getRate.getCurrentRate(
+      crypto: 'BTC',
+      currency: 'USD',
+    );
+
+    print(rate);
+  }
 
   DropdownButton<String> androidDropDown() {
     List<DropdownMenuItem<String>> dropDowns = [];
