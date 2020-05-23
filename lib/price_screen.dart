@@ -33,7 +33,7 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 
-  List<Text> getPickerItemList() {
+  CupertinoPicker IOSPicker() {
     List<Text> dropDowns = [];
 
     for (var currency in currenciesList) {
@@ -45,7 +45,14 @@ class _PriceScreenState extends State<PriceScreen> {
       ));
     }
 
-    return dropDowns;
+    CupertinoPicker(
+      backgroundColor: Colors.lightBlue,
+      itemExtent: 32.0,
+      onSelectedItemChanged: (selectedIndex) {
+        print(selectedIndex);
+      },
+      children: dropDowns,
+    );
   }
 
   @override
@@ -84,14 +91,7 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: CupertinoPicker(
-              backgroundColor: Colors.lightBlue,
-              itemExtent: 32.0,
-              onSelectedItemChanged: (selectedIndex) {
-                print(selectedIndex);
-              },
-              children: getPickerItemList(),
-            ),
+            child: ,
           ),
         ],
       ),
