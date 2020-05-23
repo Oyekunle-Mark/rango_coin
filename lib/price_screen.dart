@@ -14,7 +14,6 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String _selectedCurrency = 'AUD';
-  GetRate _getRate = GetRate();
   double _bTCRate;
   double _eTHRate;
   double _lTCRate;
@@ -27,6 +26,7 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   void fetchRate() async {
+    GetRate _getRate = GetRate();
     await _getRate.getCryptRate(currency: _selectedCurrency);
 
     setState(() {
