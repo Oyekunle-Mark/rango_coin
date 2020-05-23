@@ -96,21 +96,26 @@ class _PriceScreenState extends State<PriceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          CryptoCard(
-              cryptoType: 'BTC',
-              fetched: _fetched,
-              currentRate: _bTCRate,
-              selectedCurrency: _selectedCurrency),
-          CryptoCard(
-              cryptoType: 'ETH',
-              fetched: _fetched,
-              currentRate: _eTHRate,
-              selectedCurrency: _selectedCurrency),
-          CryptoCard(
-              cryptoType: 'LTC',
-              fetched: _fetched,
-              currentRate: _lTCRate,
-              selectedCurrency: _selectedCurrency),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              CryptoCard(
+                  cryptoType: 'BTC',
+                  fetched: _fetched,
+                  currentRate: _bTCRate,
+                  selectedCurrency: _selectedCurrency),
+              CryptoCard(
+                  cryptoType: 'ETH',
+                  fetched: _fetched,
+                  currentRate: _eTHRate,
+                  selectedCurrency: _selectedCurrency),
+              CryptoCard(
+                  cryptoType: 'LTC',
+                  fetched: _fetched,
+                  currentRate: _lTCRate,
+                  selectedCurrency: _selectedCurrency),
+            ],
+          ),
           Container(
             height: 150.0,
             alignment: Alignment.center,
