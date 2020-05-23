@@ -8,16 +8,16 @@ class GetRate {
   GetRate({this.currency});
 
   final String currency;
-  double ethRate;
-  double bctRate;
-  double ltcRate;
+  double eTHRate;
+  double bTCRate;
+  double lTCRate;
 
   Future getCryptRate({String crypto, String currency}) async {
-    ethRate =
+    eTHRate =
         await getRateByCryptoAndCurrency(crypto: 'ETH', currency: currency);
-    bctRate =
+    bTCRate =
         await getRateByCryptoAndCurrency(crypto: 'BTC', currency: currency);
-    ltcRate =
+    lTCRate =
         await getRateByCryptoAndCurrency(crypto: 'LTC', currency: currency);
   }
 
