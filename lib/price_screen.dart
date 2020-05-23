@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:bitcoin_ticker/coin_data.dart';
+
+import 'coin_data.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -7,6 +10,21 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String _selectedCurrency = 'USD';
+
+  List<DropdownMenuItem<String>> getDropDownItems() {
+    List<DropdownMenuItem<String>> dropDowns = [];
+
+    for (var currency in currenciesList) {
+      dropDowns.add(
+        DropdownMenuItem(
+          child: Text(currency),
+          value: currency,
+        ),
+      );
+    }
+
+    return dropDowns;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,18 +65,18 @@ class _PriceScreenState extends State<PriceScreen> {
             child: DropdownButton<String>(
               value: _selectedCurrency,
               items: [
-                DropdownMenuItem(
-                  child: Text('USD'),
-                  value: 'USD',
-                ),
-                DropdownMenuItem(
-                  child: Text('EUR'),
-                  value: 'EUR',
-                ),
-                DropdownMenuItem(
-                  child: Text('GBP'),
-                  value: 'GBP',
-                ),
+//                DropdownMenuItem(
+//                  child: Text('USD'),
+//                  value: 'USD',
+//                ),
+//                DropdownMenuItem(
+//                  child: Text('EUR'),
+//                  value: 'EUR',
+//                ),
+//                DropdownMenuItem(
+//                  child: Text('GBP'),
+//                  value: 'GBP',
+//                ),
               ],
               onChanged: (value) {
                 setState(() {
