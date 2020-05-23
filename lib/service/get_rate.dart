@@ -12,7 +12,7 @@ class GetRate {
   double bTCRate;
   double lTCRate;
 
-  Future getCryptRate({String crypto, String currency}) async {
+  void getCryptRate({String crypto, String currency}) async {
     eTHRate =
         await getRateByCryptoAndCurrency(crypto: 'ETH', currency: currency);
     bTCRate =
