@@ -8,17 +8,17 @@ class GetRate {
   Future getCurrentRate({String crypto, String currency}) async {
     var url = '$baseURL/$crypto/$currency';
 
-    // Await the http get response, then decode the json-formatted response.
-    var response = await http.get(
-      url,
-      headers: {'X-CoinAPI-Key': apiKey},
-    );
-
-    if (response.statusCode == 200) {
-      var jsonResponse = convert.jsonDecode(response.body);
-      return jsonResponse['rate'];
-    } else {
-      print('Request failed with status: ${response.statusCode}.');
-    }
+//    var response = await http.get(
+//      url,
+//      headers: {'X-CoinAPI-Key': apiKey},
+//    );
+//
+//    if (response.statusCode == 200) {
+//      var jsonResponse = convert.jsonDecode(response.body);
+//      return jsonResponse['rate'];
+//    } else {
+//      print('Request failed with status: ${response.statusCode}.');
+//    }
+    return 2000.0;
   }
 }
