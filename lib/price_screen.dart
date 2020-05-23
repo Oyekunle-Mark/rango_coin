@@ -18,13 +18,13 @@ class _PriceScreenState extends State<PriceScreen> {
   @override
   void initState() {
     super.initState();
-    fetchRage();
+    fetchRate(currency: _selectedCurrency);
   }
 
-  void fetchRage() async {
+  void fetchRate({@required String currency}) async {
     double rate = await _getRate.getCurrentRate(
       crypto: 'BTC',
-      currency: 'USD',
+      currency: currency,
     );
 
     setState(() {
