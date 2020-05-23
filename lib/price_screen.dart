@@ -27,7 +27,7 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   void fetchRate() async {
-    _getRate.getCryptRate(currency: _selectedCurrency);
+    await _getRate.getCryptRate(currency: _selectedCurrency);
 
     setState(() {
       _bTCRate = _getRate.bTCRate;
