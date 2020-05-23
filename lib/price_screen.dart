@@ -95,6 +95,7 @@ class _PriceScreenState extends State<PriceScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           CryptoCard(
+              cryptoType: 'BTC',
               fetched: _fetched,
               uSDRate: _uSDRate,
               selectedCurrency: _selectedCurrency),
@@ -113,11 +114,13 @@ class _PriceScreenState extends State<PriceScreen> {
 
 class CryptoCard extends StatelessWidget {
   const CryptoCard({
+    @required this.cryptoType,
     @required this.fetched,
     @required this.uSDRate,
     @required this.selectedCurrency,
   });
 
+  final String cryptoType;
   final bool fetched;
   final double uSDRate;
   final String selectedCurrency;
@@ -135,7 +138,7 @@ class CryptoCard extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
           child: Text(
-            '1 BTC = ${fetched ? uSDRate.toInt() : '?'} $selectedCurrency',
+            '1 $cryptoType = ${fetched ? uSDRate.toInt() : '?'} $selectedCurrency',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20.0,
